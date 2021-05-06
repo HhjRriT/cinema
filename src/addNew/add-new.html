@@ -3,7 +3,7 @@
     <div class="modal-header">
       <h5 class="modal-title">Добавить новый фильм</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+        <span class="MYclose" aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
@@ -25,7 +25,7 @@
               <label class="custom-file-label" for="upload-poster">Выберите файл</label>
             </div>
           </div>
-          <fieldset class="form-group">
+          <fieldset class="form-group MYfield">
             <legend class="col-form-label pt-0">Детальная информация:</legend>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Год:</label>
@@ -51,18 +51,18 @@
                 <input type="text" class="form-control">
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-primary btn-add-field" type="button"><svg class="octicon octicon-plus" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg></button>
+                <button class="btn btn-primary btn-add-field addBtn" type="button"><svg class="octicon octicon-plus addBtn" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path class="addBtn" fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"></path></svg></button>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row MYrow">
               <div class="col-sm-5">
                 <input type="text" class="form-control" placeholder="Должность">
               </div>
               <div class="col-sm-5">
                 <input type="text" class="form-control" placeholder="Имя">
               </div>
-              <div class="col-sm-2">
-                <button class="btn btn-danger btn-sm btn-remove-field" type="button"><svg class="octicon octicon-x" viewBox="0 0 14 18" version="1.1" width="14" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg></button>
+              <div class="col-sm-2 dellBtn">
+                <button class="btn btn-danger btn-sm btn-remove-field dellBtn" type="button"><svg class="octicon octicon-x dellBtn" viewBox="0 0 14 18" version="1.1" width="14" height="18" aria-hidden="true"><path class ="dellBtn" fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg></button>
               </div>
             </div>
           </fieldset>
