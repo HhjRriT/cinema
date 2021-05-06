@@ -4,7 +4,8 @@ export function searchById(id) {
     })
 }
 
-const movies = [
+
+export const movies = [
     {
         id: 1,
         name: "Гори, гори ясно",
