@@ -1,6 +1,7 @@
 import {BaseUiComponent} from "../base-ui-component";
 import {searchById} from "../allMovies";
-import html from "./card.html"
+import html from "./card.html";
+import { appHistory } from "../app-history";
 
 class Card extends BaseUiComponent {
     constructor(html, data, id) {
@@ -10,7 +11,11 @@ class Card extends BaseUiComponent {
 }
 
 export function getCard(id) {
-    return (new Card(html, searchById(id), id)).render()
-
+    const card = (new Card(html, searchById(id), id)).render()
+    card.addEventListener("click", (event) => {
+        event.preventDefault()
+        appHistory.push({pathname: `/movie/${id}`})
+    })
+    return card;
 }
 
