@@ -1,90 +1,84 @@
 import {BaseUiComponent} from "../base-ui-component";
 import html from "./add-new.html";
 import {appHistory} from "../app-history";
-import {movies} from "../allMovies";
 
 
+
+function addBtn(movie, inputs) {
+    const btn = movie.querySelector("button.btn.btn-primary.mr-3");
+    btn.setAttribute("disabled", "disabled");
+    btn.addEventListener("click", event => {
+        const data = {}
+        console.log(inputs)
+        for (let i = 0; i < inputs.length; i++) {
+            console.log(inputs[i])
+            if (inputs[i].parentElement.innerText) {
+                data[inputs[i].parentElement.innerText] = i.value
+            } else if (inputs[i].parentElement.parentElement.innerText) {
+                data[inputs[i].parentElement.parentElement.innerText] = i.value;
+            } else {
+                data[inputs[i].placeholder + i] = i.value;
+            }
+        }
+        console.log(data)
+    })
+    return btn
+}
+
+function getPoster(movie) {
+    const poster = movie.querySelector("#upload-poster");
+    poster.addEventListener("change", (event) => {
+        movie.querySelector(".custom-file-label").innerText = event.target.files[0].name;
+    })
+    return poster
+}
+
+function plusRow(movie) {
+    const row = movie.querySelector(".MYrow");
+    const btn = movie.querySelector(".addBtn");
+    btn.addEventListener("click", (event) => {
+        row.after(row.cloneNode(true));
+        (movie.querySelectorAll(".MYrow")).forEach((el, i) => {
+            (el.querySelector("button")).addEventListener(("click"), () => {
+                if (i !== 0) el.hidden = true
+            })
+        })
+    })
+    return btn
+}
+
+function getXBtn(movie) {
+    const btn = movie.querySelector(".MYclose")
+    btn.addEventListener("click", (event) => {
+        appHistory.push({pathname: '/'})
+    })
+}
+
+function getAllInputs(movie) {
+    const inputs =  [...movie.querySelectorAll("input"), ...movie.querySelectorAll("textarea")]
+    const btn = movie.querySelector("button.btn.btn-primary.mr-3");
+    inputs.forEach((el) => {
+        el.addEventListener("input", () => {
+            if (inputs.every((input) => input.value.length !== 0 )) btn.removeAttribute("disabled")
+        })
+    })
+    return inputs
+}
 
 class AddNew extends BaseUiComponent {
     constructor(html, data) {
         super(html, data);
         this.html = this.render();
-
+        this.inputs = getAllInputs(this.html);
+        this.plusRowBtn = plusRow(this.html);
+        this.addBtn = addBtn(this.html, this.inputs);
+        this.poster = getPoster(this.html);
+        this.btnX = getXBtn(this.html)
     }
+
 }
 
 export function addNewMovie() {
-    const movie = (new AddNew(html, {})).html;
-    const add = movie.querySelector("button.btn.btn-primary.mr-3");
-    add.setAttribute("disabled", "disabled");
-    let inputs = [...movie.querySelectorAll("input"), ...movie.querySelectorAll("textarea")];
-    isReady(inputs, add)
-    const poster = movie.querySelector("#upload-poster");
-    poster.addEventListener("change", (event) => {
-        movie.querySelector(".custom-file-label").innerText = event.target.files[0].name;
-    })
-    const row = movie.querySelector(".MYrow");
-    movie.addEventListener("click", (event) => {
-        console.log(event)
-        if (event.target.className === "btn btn-outline-danger" || event.target.className === "MYclose") {
-            appHistory.push({pathname: '/'});
-        }
-        if (event.target.classList.contains("addBtn")) {
-            const newRow = row.cloneNode(true);
-            row.after(newRow);
-            (movie.querySelectorAll(".MYrow")).forEach((el,i) => {
-                (el.querySelector("button")).addEventListener(("click"), ()=> {if(i!==0)el.hidden = true})
-            })
-        }
-        if (event.target.className === "btn btn-primary mr-3") {
-            inputs = [...movie.querySelectorAll("input"), ...movie.querySelectorAll("textarea")]
-            const extra = []
-            const basic = []
-            for (let i of inputs) {
-                if (i.placeholder) {
-                    extra.push(i.value)
-                }else {
-                    basic.push(i.value)
-                }
-            }
-            if (basic.some(el => {
-                return el === ""
-            })) {
-                alert("не все ввели")
-            }else {
-
-                const newMovie = {
-                    id: 5,
-                    name: "Гори, гори ясно 6666",
-                    origin: "Brightburn",
-                    year : 2019,
-                    country : "USA",
-                    people: [["director", " David Yarovesky"], ["Writers"," Brian Gunn","Mark Gunn"]],
-                    imdb : 6.4,
-                    title : "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
-                    staring: ["Элизабет Бэнкс", "Дэвид Денман", "Джексон А. Данн"],
-                    likes : [124,21]
-                }
-                movies.push(newMovie)
-                appHistory.push({pathname: `/movie/${newMovie.id}`})
-            }
-
-
-        }
-
-    })
+    const movie = (new AddNew(html, {})).html
     return movie;
-}
-
-function isReady (arr, btn) {
-    for (let i of arr) {
-        i.addEventListener("input", () => {
-            console.log(i.value)
-            if (arr.every((el) => {
-                return el.value.length > 3
-            })) {
-                btn.removeAttribute("disabled")
-            }
-        })
-    }
 }
