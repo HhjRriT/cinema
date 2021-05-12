@@ -1,78 +1,127 @@
 const data = [
     {
-        id: 1,
-        name: "Гори, гори ясно",
-        origin: "Brightburn",
-        year: 2019,
-        country: "USA",
-        people: [["director", " David Yarovesky"], ["Writers", " Brian Gunn", "Mark Gunn"]],
-        imdb: 6.4,
-        title: "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
-        staring: ["Элизабет Бэнкс", "Дэвид Денман", "Джексон А. Данн"],
-        likes: [124, 21]
+        "id": 1,
+        "name": "Гори, гори ясно",
+        "origin": "Brightburn",
+        "year": 2019,
+        "country": "USA",
+        "tagline": "«Imagine What He Could Become»",
+        "director": "David Yarovesky",
+        "imdb": 6.4,
+        "description": "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
+        "likes": [
+            0,
+            0
+        ],
+        "extra": [
+            {"сценарий": "Брайан Ганн, Марк Ганн"},
+            {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
+            { "оператор": "Майкл Даллаторре"},
+            {"композитор": "Тим Уильямс"}
+
+        ],
+        "poster": null,
+        "stars": "Элизабет Бэнкс,Дэвид Денман,Джексон А. Данн,Абрахам Клинкскейлз,Кристиан Финлейсон,Дженнифер Холлэнд,Эмми Хантер,Мэтт Джонс,Мередит Хагнер,Бекки Уолстром"
+
     },
     {
-        id: 2,
-        name: "Гори, гори ясно 2",
-        origin: "Brightburn",
-        year: 2019,
-        country: "USA",
-        people: [["director", " David Yarovesky"], ["Writers", " Brian Gunn", "Mark Gunn"]],
-        imdb: 6.4,
-        title: "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
-        staring: ["Элизабет Бэнкс", "Дэвид Денман", "Джексон А. Данн"],
-        likes: [124, 21]
+        "id": 2,
+        "name": "Гори, гори ясно 22",
+        "origin": "Brightburn",
+        "year": 2019,
+        "country": "USA",
+        "tagline": "«Imagine What He Could Become»",
+        "director": "David Yarovesky",
+        "imdb": 6.4,
+        "description": "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
+        "likes": [
+            0,
+            0
+        ],
+        "extra": [
+            {"сценарий": "Брайан Ганн, Марк Ганн"},
+            {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
+            { "оператор": "Майкл Даллаторре"},
+            {"композитор": "Тим Уильямс"}
+
+        ],
+        "poster": null,
+        "stars": "Элизабет Бэнкс,Дэвид Денман,Джексон А. Данн,Абрахам Клинкскейлз,Кристиан Финлейсон,Дженнифер Холлэнд,Эмми Хантер,Мэтт Джонс,Мередит Хагнер,Бекки Уолстром"
+
     },
     {
-        id: 3,
-        name: "Гори, гори ясно 3",
-        origin: "Brightburn",
-        year: 2019,
-        country: "USA",
-        people: [["director", " David Yarovesky"], ["Writers", " Brian Gunn", "Mark Gunn"]],
-        imdb: 6.4,
-        title: "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
-        staring: ["Элизабет Бэнкс", "Дэвид Денман", "Джексон А. Данн"],
-        likes: [124, 21]
+        "id": 3,
+        "name": "Гори, гори ясно 3",
+        "origin": "Brightburn",
+        "year": 2019,
+        "country": "USA",
+        "tagline": "«Imagine What He Could Become»",
+        "director": "David Yarovesky",
+        "imdb": 6.4,
+        "description": "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
+        "likes": [
+            0,
+            0
+        ],
+        "extra": [
+            {"сценарий": "Брайан Ганн, Марк Ганн"},
+            {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
+            { "оператор": "Майкл Даллаторре"},
+            {"композитор": "Тим Уильямс"}
+
+        ],
+        "poster": null,
+        "stars": "Элизабет Бэнкс,Дэвид Денман,Джексон А. Данн,Абрахам Клинкскейлз,Кристиан Финлейсон,Дженнифер Холлэнд,Эмми Хантер,Мэтт Джонс,Мередит Хагнер,Бекки Уолстром"
+
     },
     {
-        id: 4,
-        name: "Гори, гори ясно 4",
-        origin: "Brightburn",
-        year: 2019,
-        country: "USA",
-        people: [["director", " David Yarovesky"], ["Writers", " Brian Gunn", "Mark Gunn"]],
-        imdb: 6.4,
-        title: "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
-        staring: ["Элизабет Бэнкс", "Дэвид Денман", "Джексон А. Данн"],
-        likes: [124, 21]
+        "id": 4,
+        "name": "Гори, гори ясно  4",
+        "origin": "Brightburn",
+        "year": 2019,
+        "country": "USA",
+        "tagline": "«Imagine What He Could Become»",
+        "director": "David Yarovesky",
+        "imdb": 6.4,
+        "description": "Что, если потерпевший крушение на Земле инопланетный ребенок со сверхспособностями вместо того, чтобы стать героем для человечества, окажется чем-то гораздо более зловещим?",
+        "likes": [
+            0,
+            0
+        ],
+        "extra": [
+            {"сценарий": "Брайан Ганн, Марк Ганн"},
+            {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
+            { "оператор": "Майкл Даллаторре"},
+            {"композитор": "Тим Уильямс"}
+
+        ],
+        "poster": null,
+        "stars": "Элизабет Бэнкс,Дэвид Денман,Джексон А. Данн,Абрахам Клинкскейлз,Кристиан Финлейсон,Дженнифер Холлэнд,Эмми Хантер,Мэтт Джонс,Мередит Хагнер,Бекки Уолстром"
+
     }
 ]
 
-const moviesList = getMovie("movies");
-if (!moviesList) localStorage.setItem("movies", JSON.stringify(data));
-
 export function searchById(id) {
-    const result = moviesList.find((el) => el.id === id)
+    const result = getMovie("movies").find((el) => el.id === id)
     if (result) return result
 }
 
 export function searchByName(name) {
-    return moviesList.filter((el) => el.name.includes(name))
+    return getMovie("movies").filter((el) => el.name.includes(name))
 }
 
 export function saveNew(movie) {
     movie.id = getMovie("movies").length + 1
-    moviesList.push(movie)
-    localStorage.setItem("movies", JSON.stringify(moviesList))
+    const newMovieList = getMovie("movies").push(movie)
+    localStorage.setItem("movies", JSON.stringify(newMovieList))
     return movie.id
 }
 
 function getMovie(key) {
     try {
+        JSON.parse(localStorage.getItem(key)) || localStorage.setItem("movies", JSON.stringify(data))
         return JSON.parse(localStorage.getItem(key))
     } catch (error) {
         console.error("error at arr in localstorage");
-        return;
     }
 }

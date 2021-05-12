@@ -94,6 +94,7 @@ class AddNew extends BaseUiComponent {
             sortedData.likes = [0,0];
             sortedData.extra = data.extra;
             sortedData.poster = null;
+            sortedData.stars = data["В ролях:↵Укажите актеров через запятую."];
             saveNew(sortedData)
         })
         return btn

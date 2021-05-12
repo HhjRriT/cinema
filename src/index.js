@@ -1,8 +1,9 @@
-import {getMovie} from "./movie/movie";
 import {getCardByName} from "./card/card";
 import {getCard} from "./card/card";
 import {appHistory} from "./app-history";
 import {addNewMovie} from "./addNew/addNew";
+import {getMovie} from "./movie/movie";
+
 
 const wrapper = document.body.querySelector("main")
 document.body.querySelector(".nav-link").addEventListener("click", (event) => {
@@ -38,8 +39,10 @@ function renderRoute(pathname) {
         return true;
     }
     if (pathname === "/addNewMovie") {
-        wrapper.innerHTML = "";
-        wrapper.appendChild(addNewMovie())
+        wrapper.style.zIndex = 0
+        const modal = addNewMovie()
+        modal.style.zIndex = 3
+        wrapper.appendChild(modal)
         return true;
     }
     if (pathname === `/search`) {
