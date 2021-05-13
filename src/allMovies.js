@@ -102,26 +102,33 @@ const data = [
 ]
 
 export function searchById(id) {
-    const result = getMovie("movies").find((el) => el.id === id)
+    const result = loadMovies("movies").find((el) => el.id === id)
     if (result) return result
 }
 
 export function searchByName(name) {
-    return getMovie("movies").filter((el) => el.name.includes(name))
+    return loadMovies("movies").filter((el) => el.name.includes(name))
 }
 
 export function saveNew(movie) {
-    movie.id = getMovie("movies").length + 1
-    const newMovieList = getMovie("movies").push(movie)
+    movie.id = loadMovies("movies").length + 1
+    const newMovieList = loadMovies("movies").push(movie)
     localStorage.setItem("movies", JSON.stringify(newMovieList))
     return movie.id
 }
 
-function getMovie(key) {
+function loadMovies(key) {
     try {
         JSON.parse(localStorage.getItem(key)) || localStorage.setItem("movies", JSON.stringify(data))
         return JSON.parse(localStorage.getItem(key))
     } catch (error) {
         console.error("error at arr in localstorage");
     }
+}
+
+export function updateMovie(movie) {
+    const oldMovies = loadMovies("movies");
+    const id = movie.id - 1;
+    oldMovies[id] = movie;
+    localStorage.setItem("movies", JSON.stringify(oldMovies))
 }

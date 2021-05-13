@@ -1,10 +1,9 @@
-import {getCardByName} from "./card/card";
-import {getCard} from "./card/card";
+import {getCardByName, getCard} from "./card/card";
 import {appHistory} from "./app-history";
 import {addNewMovie} from "./addNew/addNew";
-import {getMovie} from "./movie/movie";
+import {getMovieById} from "./movie/movie";
 
-
+console.log("start")
 const wrapper = document.body.querySelector("main")
 document.body.querySelector(".nav-link").addEventListener("click", (event) => {
     event.preventDefault();
@@ -33,15 +32,16 @@ function renderRoute(pathname) {
         return true;
     }
     if (pathname.startsWith("/movie/")) {
+
         wrapper.innerHTML = "";
         const id = pathname.slice(7)
-        wrapper.appendChild(getMovie(+id))
+        console.log(id)
+        wrapper.appendChild(getMovieById(+id))
         return true;
     }
     if (pathname === "/addNewMovie") {
-        wrapper.style.zIndex = 0
+        wrapper.innerHTML = "";
         const modal = addNewMovie()
-        modal.style.zIndex = 3
         wrapper.appendChild(modal)
         return true;
     }
@@ -50,6 +50,8 @@ function renderRoute(pathname) {
         for (let i of getCardByName(searchInput.value)) wrapper.appendChild(i)
         return true;
     }
+    wrapper.innerHTML = "";
+    wrapper.innerText = "404 error"
 }
 
 appHistory.listen((listener) => {
