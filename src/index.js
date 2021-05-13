@@ -12,6 +12,7 @@ document.body.querySelector(".nav-link").addEventListener("click", (event) => {
 const add = document.querySelector("#add-new")
 add.addEventListener("click", (event) => {
     event.preventDefault()
+    if(document.body.querySelector("#modaldialog")) document.body.removeChild(document.body.querySelector("#modaldialog"))
     const modal = addNewMovie()
     document.body.appendChild(modal)
 })

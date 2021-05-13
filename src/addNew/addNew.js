@@ -3,7 +3,6 @@ import html from "./add-new.html";
 import {appHistory} from "../app-history";
 import {saveNew} from "../allMovies";
 
-
 function getPoster(movie) {
     const poster = movie.querySelector("#upload-poster");
     poster.addEventListener("change", (event) => {
@@ -12,49 +11,60 @@ function getPoster(movie) {
     return poster
 }
 
-function plusRow(movie) {
+export function plusRow(movie, count) {
     const row = movie.querySelector(".MYrow");
     const btn = movie.querySelector(".addBtn");
-    btn.addEventListener("click", (event) => {
+    btn.addEventListener("click", () => {
         const newRow = row.cloneNode(true)
         newRow.querySelectorAll("input").forEach((el) => el.value = "")
-        row.after(newRow);
+        newRow.querySelector("button").addEventListener("click", () => {
+            newRow.style.display = "none";
+        })
+        row.parentNode.appendChild(newRow);
     })
+    if (count) {
+        for (let i = 0; i < count; i++) {
+            const newRow = row.cloneNode(true)
+            newRow.querySelectorAll("input").forEach((el) => el.value = "")
+            newRow.querySelector("button").addEventListener("click", () => {
+                newRow.style.display = "none";
+            })
+            row.parentNode.appendChild(newRow)
+        }
+    }
     return btn
 }
 
 export class AddNew extends BaseUiComponent {
-
-    constructor(html, data) {
-        super(html, data);
-        this.html = this.render();
-        this.inputs = null
-        this.plusRowBtn = plusRow(this.html);
-        this.addBtn = this.addBtn();
-        this.poster = getPoster(this.html);
-    }
-
-    getAllInputs() {
-        const wrapper = document.body.querySelector(".modal-body") || this.html.querySelector(".modal-body")
+    static getAllInputs(html) {
+        const wrapper = document.body.querySelector(".modal-body") || html.querySelector(".modal-body")
         const inputs = [...wrapper.querySelectorAll("input"), ...wrapper.querySelectorAll("textarea")]
         const importantInpust = inputs.filter((i) => (!i.parentElement.parentElement.classList.contains("MYrow")))
-        const btn = this.html.querySelector("button.btn.btn-primary.mr-3");
+        const btn = html.querySelector("button.btn.btn-primary.mr-3");
         importantInpust.forEach((el) => {
             el.addEventListener("input", () => {
                 btn.disabled = true
                 if (importantInpust.every((input) => input.value.length > 2)) btn.removeAttribute("disabled")
             })
         })
-        this.inputs = inputs
-
         return inputs
+    }
+
+    constructor(html, data, rows) {
+        super(html, data);
+        this.html = this.render();
+        this.rows = rows
+        this.inputs = AddNew.getAllInputs(this.html)
+        this.plusRowBtn = plusRow(this.html, this.rows);
+        this.addBtn = this.addBtn();
+        this.poster = getPoster(this.html);
     }
 
     addBtn() {
         const btn = this.html.querySelector("button.btn.btn-primary.mr-3");
         btn.disabled = true;
         btn.addEventListener("click", event => {
-            const inputs = this.getAllInputs()
+            const inputs = AddNew.getAllInputs(this.html)
             const data = {}
             data.extra = []
             for (let i = 0; i < inputs.length; i++) {
@@ -93,11 +103,9 @@ export class AddNew extends BaseUiComponent {
         })
         return btn
     }
-
 }
 
-export function addNewMovie() {
-    const movie = (new AddNew(html, {}))
-    movie.getAllInputs()
+export function addNewMovie(rows) {
+    const movie = (new AddNew(html, {}, rows))
     return movie.html;
 }
