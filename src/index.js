@@ -3,7 +3,6 @@ import {appHistory} from "./app-history";
 import {addNewMovie} from "./addNew/addNew";
 import {getMovieById} from "./movie/movie";
 
-console.log("start")
 const wrapper = document.body.querySelector("main")
 document.body.querySelector(".nav-link").addEventListener("click", (event) => {
     event.preventDefault();
@@ -13,7 +12,8 @@ document.body.querySelector(".nav-link").addEventListener("click", (event) => {
 const add = document.querySelector("#add-new")
 add.addEventListener("click", (event) => {
     event.preventDefault()
-    appHistory.push({pathname: `/addNewMovie`})
+    const modal = addNewMovie()
+    document.body.appendChild(modal)
 })
 
 const search = document.querySelector(".search.btn")
@@ -32,17 +32,11 @@ function renderRoute(pathname) {
         return true;
     }
     if (pathname.startsWith("/movie/")) {
-
         wrapper.innerHTML = "";
         const id = pathname.slice(7)
         console.log(id)
         wrapper.appendChild(getMovieById(+id))
-        return true;
-    }
-    if (pathname === "/addNewMovie") {
-        wrapper.innerHTML = "";
-        const modal = addNewMovie()
-        wrapper.appendChild(modal)
+
         return true;
     }
     if (pathname === `/search`) {

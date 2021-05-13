@@ -102,7 +102,7 @@ const data = [
 ]
 
 export function searchById(id) {
-    const result = loadMovies("movies").find((el) => el.id === id)
+    const result = (loadMovies("movies")).find((el) => el.id === id)
     if (result) return result
 }
 
@@ -111,9 +111,10 @@ export function searchByName(name) {
 }
 
 export function saveNew(movie) {
-    movie.id = loadMovies("movies").length + 1
-    const newMovieList = loadMovies("movies").push(movie)
-    localStorage.setItem("movies", JSON.stringify(newMovieList))
+    const oldMoviesList = loadMovies("movies")
+    movie.id = (oldMoviesList[oldMoviesList.length - 1]).id + 1
+    oldMoviesList.push(movie)
+    localStorage.setItem("movies", JSON.stringify(oldMoviesList))
     return movie.id
 }
 
@@ -131,4 +132,12 @@ export function updateMovie(movie) {
     const id = movie.id - 1;
     oldMovies[id] = movie;
     localStorage.setItem("movies", JSON.stringify(oldMovies))
+}
+
+export function deleteMovieById(id) {
+    const oldMovies = loadMovies("movies");
+    const toDel = oldMovies.find((el) => el.id === id)
+    const index = oldMovies.indexOf(toDel)
+    oldMovies.splice((index),1);
+    localStorage.setItem("movies", JSON.stringify(oldMovies));
 }
