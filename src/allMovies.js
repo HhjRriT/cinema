@@ -16,7 +16,7 @@ const data = [
         "extra": [
             {"сценарий": "Брайан Ганн, Марк Ганн"},
             {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
-            { "оператор": "Майкл Даллаторре"},
+            {"оператор": "Майкл Даллаторре"},
             {"композитор": "Тим Уильямс"}
 
         ],
@@ -41,7 +41,7 @@ const data = [
         "extra": [
             {"сценарий": "Брайан Ганн, Марк Ганн"},
             {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
-            { "оператор": "Майкл Даллаторре"},
+            {"оператор": "Майкл Даллаторре"},
             {"композитор": "Тим Уильямс"}
 
         ],
@@ -66,7 +66,7 @@ const data = [
         "extra": [
             {"сценарий": "Брайан Ганн, Марк Ганн"},
             {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
-            { "оператор": "Майкл Даллаторре"},
+            {"оператор": "Майкл Даллаторре"},
             {"композитор": "Тим Уильямс"}
 
         ],
@@ -91,7 +91,7 @@ const data = [
         "extra": [
             {"сценарий": "Брайан Ганн, Марк Ганн"},
             {"продюсер": "Джеймс Ганн, Брайан Ганн, Марк Ганн"},
-            { "оператор": "Майкл Даллаторре"},
+            {"оператор": "Майкл Даллаторре"},
             {"композитор": "Тим Уильямс"}
 
         ],
@@ -104,6 +104,7 @@ const data = [
 export function searchById(id) {
     const result = (loadMovies("movies")).find((el) => el.id === id)
     if (result) return result
+    return false
 }
 
 export function searchByName(name) {
@@ -129,15 +130,16 @@ function loadMovies(key) {
 
 export function updateMovie(movie) {
     const oldMovies = loadMovies("movies");
-    const id = movie.id - 1;
+    const id = movie.id -1 ;
     oldMovies[id] = movie;
     localStorage.setItem("movies", JSON.stringify(oldMovies))
+    return id
 }
 
 export function deleteMovieById(id) {
     const oldMovies = loadMovies("movies");
     const toDel = oldMovies.find((el) => el.id === id)
     const index = oldMovies.indexOf(toDel)
-    oldMovies.splice((index),1);
+    oldMovies.splice((index), 1);
     localStorage.setItem("movies", JSON.stringify(oldMovies));
 }

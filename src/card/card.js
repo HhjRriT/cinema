@@ -29,6 +29,7 @@ class Card extends BaseUiComponent {
     removeMovie() {
         if (confirm("You want to del this moovie?")) {
             deleteMovieById(this.id)
+            appHistory.push({pathname: `/`})
         }
     }
 
@@ -41,11 +42,10 @@ class Card extends BaseUiComponent {
 
     changeMovie() {
         const movie = searchById(this.id);
-        const modal = addNewMovie(movie.extra.length-1);
+        const modal = addNewMovie(movie.extra.length-1, this.id);
         if(document.body.querySelector("#modaldialog")) document.body.removeChild(document.body.querySelector("#modaldialog"))
-        document.body.appendChild(modal);
-        const wrapper = document.body.querySelector(".modal-body");
-        const inputs = AddNew.getAllInputs(wrapper);
+        document.body.appendChild(modal.html);
+        const inputs = modal.getAllInputs();
         for (let i of Object.keys(movie)) {
             const input = inputs.find((el) => el.id === i);
             if (input) input.value = movie[i];

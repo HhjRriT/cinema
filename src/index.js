@@ -13,7 +13,7 @@ const add = document.querySelector("#add-new")
 add.addEventListener("click", (event) => {
     event.preventDefault()
     if(document.body.querySelector("#modaldialog")) document.body.removeChild(document.body.querySelector("#modaldialog"))
-    const modal = addNewMovie()
+    const modal = addNewMovie().html
     document.body.appendChild(modal)
 })
 
@@ -35,7 +35,6 @@ function renderRoute(pathname) {
     if (pathname.startsWith("/movie/")) {
         wrapper.innerHTML = "";
         const id = pathname.slice(7)
-        console.log(id)
         wrapper.appendChild(getMovieById(+id))
 
         return true;
